@@ -1,7 +1,5 @@
 import urllib2
-from bs4 import BeautifulSoup
-import urlparse
-import os.path
+from bs4 import BeautifulSoup, NavigableString, Tag
 
 class HeroSpider(object):
 
@@ -24,6 +22,7 @@ class HeroSpider(object):
 
         for cnt in xrange(800):
             soup = self.scrape(str(cnt))
+            #soup = self.scrape('64')
             if soup is not None:
                 #figure out what kind of data this is: hero, talent, ability
                 #checks on this image that keys off if markup is hero or talent
@@ -42,9 +41,17 @@ class HeroSpider(object):
 
     def parse_hero(self, markup):
         print "hero markup"
+        name = markup.find("h3").text
+        print name
 
     def parse_talents(self, markup):
         print "talent markup"
+        name = markup.find("h5").text
+        for br in markup.find_all("h5"):
+            print br.parent.get_text()
 
     def parse_ability(self, markup):
-        print "talent markup"
+        print "ability markup"
+        name = markup.find("h5").text
+        for br in markup.find_all("h5"):
+            print br.parent.get_text()
