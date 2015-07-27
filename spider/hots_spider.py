@@ -1,8 +1,8 @@
 import urllib2
 from bs4 import BeautifulSoup, NavigableString, Tag
 
-class HeroSpider(object):
 
+class HeroSpider(object):
     def __init__(self):
         self.base_url = "http://www.heroesfire.com/ajax/tooltip?relation_type=WikibaseArticle&relation_id="
         self.get_content()
